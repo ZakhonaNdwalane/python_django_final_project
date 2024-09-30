@@ -1,0 +1,37 @@
+
+{% extends 'Chiliza/base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="risk-calculator-container">
+    <h2>Agricultural Risk Calculator</h2>
+
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'risk_calculator' %}">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- This will render your Django form -->
+
+            <button type="submit" class="btn-primary">Calculate Risk</button>
+        </form>
+
+        <!-- Result Section -->
+        {% if risk_percentage %}
+            <div class="risk-result">
+                <h3>Risk Assessment Result</h3>
+                <p>Your overall agricultural risk is <strong>{{ risk_percentage }}%</strong>.</p>
+            </div>
+        {% endif %}
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">log in</a> to access the Agricultural Risk Calculator.</p>
+    {% endif %}
+
+    <!-- Home Redirect Button -->
+    <div class="home-redirect">
+        <a href="{% url 'home' %}" class="btn-secondary">Go to Home</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'Chiliza/base.html' %}
+
+{% load static %}
+{% block content %}
+
+<main>
+    <h2>Our Services</h2>
+    <p>Explore the various services we offer to empower agricultural businesses, farmers, and industry stakeholders.</p>
+    
+    <section id="services">
+        {% for service in services %}
+            <div class="service">
+                {% if service.image %}
+                    <img src="{% static service.image %}" alt="{{ service.title }}">
+                {% endif %}
+                <h4>{{ service.title }}</h4>
+                <p>{{ service.snippet }}</p>
+            </div>
+        {% endfor %}
+    </section>
+</main>
+
+<!-- Link to the CSS file -->
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}

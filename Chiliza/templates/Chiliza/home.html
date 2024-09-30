@@ -1,0 +1,64 @@
+{% extends 'Chiliza/base.html' %}
+{% load static %}
+
+{% block title %}
+    Welcome to Chiliza Advisory Services
+{% endblock %}
+
+{% block content %}
+<main>
+    <!-- Home Image Section -->
+    <section id="home-image-container">
+        <img src="{% static 'home/home_image.jpg' %}" alt="Home Image">
+        <img src="{% static 'home/home_image1.jpg' %}" alt="Home Image 1">
+    </section>
+
+    <!-- Home Content Section -->
+    <p><strong>At Chiliza Advisory Services,</strong> we provide tailored insights and solutions to help you succeed in the dynamic agricultural industry.</p>
+
+    <!-- About Section -->
+    <section id="about">
+        <h1>About Chiliza Advisory Services</h1>
+        <h2>Our Vision</h2>
+        <p>{{ about_content.vision }}</p>
+        <h2>Our Mission</h2>
+        <p>{{ about_content.mission }}</p>
+        <h2>Why Choose Us?</h2>
+        <ul>
+            {% for reason in about_content.why_choose %}
+                {% with reason_split=reason.0 %}
+                    <li>
+                        <strong>{{ reason_split }}</strong>{{ reason.1 }}  <!-- Bold the first part and display the second part -->
+                    </li>
+                {% endwith %}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li><a href="{% url 'services' %}"><strong>View Services & Gallery</strong></a></li> <!-- Bold link text -->
+        </ul>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or need further information, feel free to reach out!</p>
+        <p>Get in touch with us by filling in the form below.</p>
+    </section>
+
+    <!-- Contact Form (included within home.html) -->
+    <section id="contact-form">
+        <h2>Contact Form</h2>
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button> <!-- Adjust size as needed -->
+        </form>
+    </section>
+</main>
+{% endblock %}

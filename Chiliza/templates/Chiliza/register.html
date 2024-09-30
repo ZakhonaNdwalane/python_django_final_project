@@ -1,0 +1,39 @@
+{% extends 'Chiliza/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="auth-container">
+        <h1>Register</h1>
+
+        <!-- Display success messages -->
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form id="registrationForm" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-user"></i></span>
+                {{ form.username }}
+            </div>
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-envelope"></i></span>
+                {{ form.email }}
+            </div>
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-lock"></i></span>
+                {{ form.password1 }}
+            </div>
+            <div class="input-group">
+                <span class="icon"><i class="fas fa-lock"></i></span>
+                {{ form.password2 }}
+            </div>
+            <button type="submit" class="submit-button">Register</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+    </div>
+{% endblock %}
