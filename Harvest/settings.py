@@ -58,6 +58,7 @@ LOGIN_REDIRECT_URL = 'home'  # URL after successful login
 LOGOUT_REDIRECT_URL = 'login'  # URL after logout
 
 
+
 ROOT_URLCONF = 'Harvest.urls'
 
 TEMPLATES = [

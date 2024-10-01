@@ -39,7 +39,11 @@
     <section id="services">
         <h2>Our Services</h2>
         <ul>
+            {% if user.is_authenticated %}
             <li><a href="{% url 'services' %}"><strong>View Services & Gallery</strong></a></li> <!-- Bold link text -->
+            {% else %}
+            <a href="{% url 'login' %}">Login to Access Services</a>
+            {% endif %}
         </ul>
     </section>
 

@@ -1,3 +1,4 @@
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,18 +13,28 @@
 <body>
     <!-- Header Section -->
     <header>
-        <h2>Chiliza Advisory Service </h2>
-        <h1>C.A.S </h1>
+        <h2>Chiliza Advisory Service</h2>
+        <h1>C.A.S</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'risk_calculator' %}">Risk Calculator</a></li>
-                <li><a href="{% url 'login' %}">Login</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'risk_calculator' %}">Risk Calculator</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
     
     <!-- Notification Messages Section -->
-    <div id="notification" class="notification"></div>
+    {% if messages %}
+        <div id="notification" class="notification">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
 
     <!-- Main Content -->
     {% block content %}
